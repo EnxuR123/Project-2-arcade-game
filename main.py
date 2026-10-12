@@ -13,6 +13,7 @@ async def main():
             self.health = 100
             self.position = (400, 300)
             self.spiral_angle = 0
+            self.bullets = []
 
         def take_damage(self, attack):
             self.health -= attack.damage
