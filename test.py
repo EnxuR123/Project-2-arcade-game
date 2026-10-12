@@ -10,10 +10,21 @@ async def main():
     clock = pygame.time.Clock()
     GRAVITY = 0.65
 
+    class Platform:
+        def __init__(self, x, y, 110, 20)
+            self.rect = pygame.Rect(x, y, 110, 20)
+            self.image = load_image("aracde_platform.png", (110, 20))
+
+        def draw(self):
+            if self.image:
+                screen.blit(self.image, self.rect)
+            else:
+                pygame.draw.rect(screen, (90, 100, 120), self.rect)
+                
     class Background:
         def __init__(self):
             self.image = load_image("arcade_game_background", (800,600))
-            self.platorms = [
+            self.platforms = [
                 Platform(20, 470, 110, 20),
                 Platform(175, 470, 110, 20),
                 Platform(330, 470, 110, 20)
@@ -25,17 +36,7 @@ async def main():
                 screen.fill((30, 35, 52))
 
             for platform in self.platforms:
-                platform.draw
-    class Platform:
-        def self __init__(self, x, y, 110, 20)
-            self.rect = pygame.Rect(x, y, 110, 20)
-            self.image = load_image("aracde_platform.png", (110, 20))
-
-        def draw(self):
-            if self.image:
-                screen.blit(self.image, self.rect)
-            else:
-                pygame.draw.rect(screen, (90, 100, 120), self.rect)
+                platform.draw()
                 
     class Player:
         def __init__(self):
@@ -44,35 +45,35 @@ async def main():
             self.rect = pygame.Rect(0, 0, 35, 55)
             self.rect.midbottom = self.pos
 
-            self.heath = 100
+            self.health = 100
             self.on_ground = True
             self.invincible = 30
             self.shoot_cooldown = 10
             self.shoot_animation = 10
             self.facing = 1
 
-            def update(self, keys, platform):
-                acceleration = 0
+        def update(self, keys, platform):
+            acceleration = 0
 
-                if keys[pygame.K_a]: 
-                    acceleration -= 0.8
-                    self.facing = -1
+            if keys[pygame.K_a]: 
+                acceleration -= 0.8
+                self.facing = -1
 
-                if keys[pygame.K_d]:
-                    acceleration += 0.8
-                    self.facing = 1
+            if keys[pygame.K_d]:
+                acceleration += 0.8
+                self.facing = 1
 
-                self.velocity.x += acceleration 
-                self.velocity.x *= 0.9
-                self.velocity.x = max(-5, min(5, self.velocity.x))
-                self.velocity.y = min(self.velocity.y + GRAVITY, 15)
+            self.velocity.x += acceleration 
+            self.velocity.x *= 0.9
+            self.velocity.x = max(-5, min(5, self.velocity.x))
+            self.velocity.y = min(self.velocity.y + GRAVITY, 15)
 
-                last_platform = self.rect.bottom
+            last_platform = self.rect.bottom
 
-                self.pos += self.velocity
-                self.rect.midbottom = (self.pos.x, self.pos.y)
+            self.pos += self.velocity
+            self.rect.midbottom = (self.pos.x, self.pos.y)
 
-                self.on_ground = False
+            self.on_ground = False
     class Boss:
         def __init__ (self):
             self.health = 100
