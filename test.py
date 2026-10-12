@@ -26,7 +26,17 @@ async def main():
 
             for platform in self.platforms:
                 platform.draw
+    class Platform:
+        def self __init__(self, x, y, 110, 20)
+            self.rect = pygame.Rect(x, y, 110, 20)
+            self.image = load_image("aracde_platform.png", (110, 20))
 
+        def draw(self):
+            if self.image:
+                screen.blit(self.image, self.rect)
+            else:
+                pygame.draw.rect(screen, (90, 100, 120), self.rect)
+                
     class Player:
         def __init__(self):
             self.pos = pygame.Vector2(140, 470)
