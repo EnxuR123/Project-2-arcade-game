@@ -6,6 +6,7 @@ import asyncio
 async def main():
     pygame.init()
     screen = pygame.display.set_mode((800, 600))
+    pygame.display.set_caption("Goblet Cranium")
     clock = pygame.time.Clock()
     GRAVITY = 0.65
     class Player:
