@@ -81,3 +81,21 @@ async def main():
             if self.spiral_angle >= 360:
                 self.spiral_angle = 0
 
+        def draw(self, screen):
+            pygame.draw.circle(screen, (255, 0, 0), self.position, 30)
+            health_bar_width = 100
+            health_bar_height = 10
+            health_percentage = self.health / 100
+            health_bar_color = (0, 255, 0) if health_percentage > 0.5 else (255, 255, 0) if health_percentage > 0.2 else (255, 0, 0)
+            pygame.draw.rect(screen, (255, 255, 255), (self.position[0] - health_bar_width // 2, self.position[1] - 50, health_bar_width, health_bar_height))
+            pygame.draw.rect(screen, health_bar_color, (self.position[0] - health_bar_width // 2, self.position[1] - 50, int(health_bar_width * health_percentage), health_bar_height))
+
+        def draw_skill_1(self, screen):
+            for bullet in self.bullets:
+                pygame.draw.circle(screen, (0, 0, 255), bullet["position"], bullet["radius"])
+
+        def draw_skill_3(self, screen):
+            for bullet in self.bullets:
+                pygame.draw.circle(screen, (255, 0, 255), bullet["position"], bullet["radius"])
+
+    class Player:
