@@ -9,6 +9,24 @@ async def main():
     pygame.display.set_caption("Goblet Cranium")
     clock = pygame.time.Clock()
     GRAVITY = 0.65
+
+    class Background:
+        def __init__(self):
+            self.image = load_image("arcade_game_background", (800,600))
+            self.platorms = [
+                Platform(20, 470, 110, 20),
+                Platform(175, 470, 110, 20),
+                Platform(330, 470, 110, 20)
+            ]
+        def draw(self):
+            if self.image:
+                screen.blit(self.image, (0, 0))
+            else:
+                screen.fill((30, 35, 52))
+
+            for platform in self.platforms:
+                platform.draw
+
     class Player:
         def __init__(self):
             self.pos = pygame.Vector2(140, 470)
